@@ -193,15 +193,32 @@ export function Cierre() {
           </Aparece>
         </div>
 
-        <Aparece retraso={320} className="panel p-7">
-          <Qr
-            clave="repositorio"
-            etiqueta="Repositorio de Gradus en GitHub"
-            className="mx-auto h-auto w-full max-w-[11rem] text-ink"
-          />
+        <Aparece retraso={320} className="panel p-6 sm:p-7">
+          <div className="grid grid-cols-2 gap-5">
+            <div className="flex flex-col items-center">
+              <Qr
+                clave="repositorio"
+                etiqueta="Repositorio de Gradus en GitHub"
+                className="h-auto w-full max-w-[8rem] text-ink"
+              />
+              <p className="mt-3 text-center text-[11.5px] text-graphite">
+                Repositorio
+              </p>
+            </div>
+            <div className="flex flex-col items-center">
+              <Qr
+                clave="ponencia"
+                etiqueta="Esta ponencia"
+                className="h-auto w-full max-w-[8rem] text-ink"
+              />
+              <p className="mt-3 text-center text-[11.5px] text-graphite">
+                Esta ponencia
+              </p>
+            </div>
+          </div>
           <p className="mt-5 text-center text-[13px] leading-relaxed text-graphite">
-            El código de las cuatro aplicaciones, los planes de trabajo y la
-            auditoría técnica.
+            El código de las cuatro aplicaciones y esta misma presentación,
+            para volver a verla.
           </p>
         </Aparece>
       </div>

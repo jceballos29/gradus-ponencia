@@ -1,4 +1,4 @@
-# ponencia
+# Gradus - Ponencia
 
 Sitio de la ponencia sobre Gradus para el encuentro de investigación del
 Semillero Kepler-90. Sustituye a la presentación en diapositivas: se maneja como
@@ -27,13 +27,6 @@ En escritorio las secciones ocupan el viewport y se ajustan con `scroll-snap`.
 En móvil el snap se desactiva y el scroll es continuo. Cada sección tiene su
 propio `#hash`, así que se puede enlazar a una en concreto.
 
-## Guion del presentador
-
-Vive fuera del sitio, en `docs/guion-presentador.md` — esa carpeta está en
-`.gitignore` a propósito: el sitio es público y cualquiera con la URL puede
-abrir el código fuente, así que el guion nunca se envía al navegador. Cópiala
-a mano en cada máquina donde vayas a presentar.
-
 ## Contenido
 
 Todo el texto con datos vive en `content/ponencia.ts`, verificado contra el
@@ -58,13 +51,3 @@ pnpm capturas     # loguea en Railway con los usuarios sembrados y guarda en pub
 
 Los archivos que espera están declarados en `content/capturas.ts`; el propio
 script falla si falta alguno.
-
-## QR
-
-```bash
-pnpm qr                                   # QR de las 4 apps + el repositorio
-PONENCIA_URL=https://… pnpm qr            # añade el QR de esta misma página
-```
-
-Genera `content/qr.ts` (sólo el trazo del código, no un `.svg`) para poder
-dibujarlo inline con `currentColor` y que siga el tema claro/oscuro.
