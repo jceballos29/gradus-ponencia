@@ -1,23 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import {
-  ChevronLeft,
-  ChevronRight,
-  List,
-  Moon,
-  NotebookText,
-  Sun,
-  X,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, List, Moon, Sun, X } from "lucide-react";
 import { secciones } from "@/content/secciones";
-import { notas } from "@/content/ponencia";
-
-type Overlay = "indice" | "notas" | null;
 
 export function Chrome() {
   const [activa, setActiva] = useState(0);
-  const [overlay, setOverlay] = useState<Overlay>(null);
+  const [indiceAbierto, setIndiceAbierto] = useState(false);
   const cerrarRef = useRef<HTMLButtonElement>(null);
 
   /* Un solo observador revela todo lo marcado con data-revelar. Las secciones
@@ -39,7 +28,7 @@ export function Chrome() {
     return () => obs.disconnect();
   }, []);
 
-  /* Sección activa: alimenta barra de progreso, riel, contador y notas. */
+  /* Sección activa: alimenta barra de progreso, riel y contador. */
   useEffect(() => {
     const nodos = secciones
       .map((s) => document.getElementById(s.id))
@@ -79,7 +68,7 @@ export function Chrome() {
           irA(activa + 1);
           break;
         case " ":
-          if (overlay) return;
+          if (indiceAbierto) return;
           e.preventDefault();
           irA(activa + 1);
           break;
@@ -96,24 +85,19 @@ export function Chrome() {
           e.preventDefault();
           irA(secciones.length - 1);
           break;
-        case "n":
-        case "N":
-          e.preventDefault();
-          setOverlay((o) => (o === "notas" ? null : "notas"));
-          break;
         case "Escape":
           e.preventDefault();
-          setOverlay((o) => (o ? null : "indice"));
+          setIndiceAbierto((v) => !v);
           break;
       }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [activa, irA, overlay]);
+  }, [activa, irA, indiceAbierto]);
 
   useEffect(() => {
-    if (overlay) cerrarRef.current?.focus();
-  }, [overlay]);
+    if (indiceAbierto) cerrarRef.current?.focus();
+  }, [indiceAbierto]);
 
   /* El tema vive en la clase del <html>, no en estado de React: así no hay que
      sincronizar con lo que ya decidió el script previo al primer pintado.
@@ -126,7 +110,6 @@ export function Chrome() {
   }
 
   const avance = ((activa + 1) / secciones.length) * 100;
-  const seccionActiva = secciones[activa];
 
   return (
     <>
@@ -164,20 +147,13 @@ export function Chrome() {
         </a>
 
         <div className="flex items-center gap-1.5">
-          <BotonChrome
-            onClick={() => setOverlay((o) => (o === "notas" ? null : "notas"))}
-            activo={overlay === "notas"}
-            etiqueta="Notas del guion (tecla N)"
-          >
-            <NotebookText size={17} strokeWidth={1.75} />
-          </BotonChrome>
           <BotonChrome onClick={alternarTema} etiqueta="Alternar tema claro y oscuro">
             <Moon size={17} strokeWidth={1.75} className="dark:hidden" />
             <Sun size={17} strokeWidth={1.75} className="hidden dark:block" />
           </BotonChrome>
           <BotonChrome
-            onClick={() => setOverlay((o) => (o === "indice" ? null : "indice"))}
-            activo={overlay === "indice"}
+            onClick={() => setIndiceAbierto((v) => !v)}
+            activo={indiceAbierto}
             etiqueta="Índice de secciones (tecla Esc)"
           >
             <List size={17} strokeWidth={1.75} />
@@ -244,33 +220,31 @@ export function Chrome() {
         </p>
       </footer>
 
-      {/* Superposiciones */}
-      {overlay && (
+      {/* Índice */}
+      {indiceAbierto && (
         <div
           className="fixed inset-0 z-50 flex items-end justify-center sm:items-center"
           role="dialog"
           aria-modal="true"
-          aria-label={overlay === "notas" ? "Notas del guion" : "Índice"}
+          aria-label="Índice"
         >
           <button
             className="absolute inset-0 cursor-default bg-ink/50 backdrop-blur-sm"
-            onClick={() => setOverlay(null)}
+            onClick={() => setIndiceAbierto(false)}
             aria-label="Cerrar"
             tabIndex={-1}
           />
           <div className="panel desborde relative m-3 max-h-[80svh] w-full max-w-xl overflow-y-auto p-6 sm:p-7">
             <div className="mb-5 flex items-start justify-between gap-4">
               <div>
-                <p className="eyebrow">
-                  {overlay === "notas" ? "Notas del guion" : "Índice"}
-                </p>
+                <p className="eyebrow">Índice</p>
                 <p className="display mt-1 text-2xl font-semibold">
-                  {overlay === "notas" ? seccionActiva.rotulo : "Ir a una sección"}
+                  Ir a una sección
                 </p>
               </div>
               <button
                 ref={cerrarRef}
-                onClick={() => setOverlay(null)}
+                onClick={() => setIndiceAbierto(false)}
                 className="rounded-lg border border-rule p-1.5 text-graphite transition-colors hover:bg-indigo-wash hover:text-indigo"
                 aria-label="Cerrar"
               >
@@ -278,41 +252,28 @@ export function Chrome() {
               </button>
             </div>
 
-            {overlay === "notas" ? (
-              <>
-                <p className="text-[17px] leading-relaxed text-balance">
-                  {notas[seccionActiva.id]}
-                </p>
-                <p className="mt-6 border-t border-rule pt-4 text-[13px] text-graphite">
-                  Al proyectar, esto se ve en pantalla. Para leerlo en privado,
-                  abre la ponencia también en tu teléfono y pulsa{" "}
-                  <kbd className="codigo">N</kbd> ahí.
-                </p>
-              </>
-            ) : (
-              <ol className="-mx-2">
-                {secciones.map((s, i) => (
-                  <li key={s.id}>
-                    <a
-                      href={`#${s.id}`}
-                      onClick={() => setOverlay(null)}
-                      className={`flex items-baseline gap-4 rounded-lg px-2 py-2.5 transition-colors hover:bg-indigo-wash ${
-                        i === activa ? "text-indigo" : ""
-                      }`}
-                      aria-current={i === activa ? "true" : undefined}
-                    >
-                      <span className="mono w-6 shrink-0 text-[11px] text-graphite tabular-nums">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <span className="flex-1 font-medium">{s.rotulo}</span>
-                      <span className="hidden text-[13px] text-graphite sm:block">
-                        {s.titulo}
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            )}
+            <ol className="-mx-2">
+              {secciones.map((s, i) => (
+                <li key={s.id}>
+                  <a
+                    href={`#${s.id}`}
+                    onClick={() => setIndiceAbierto(false)}
+                    className={`flex items-baseline gap-4 rounded-lg px-2 py-2.5 transition-colors hover:bg-indigo-wash ${
+                      i === activa ? "text-indigo" : ""
+                    }`}
+                    aria-current={i === activa ? "true" : undefined}
+                  >
+                    <span className="mono w-6 shrink-0 text-[11px] text-graphite tabular-nums">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="flex-1 font-medium">{s.rotulo}</span>
+                    <span className="hidden text-[13px] text-graphite sm:block">
+                      {s.titulo}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       )}

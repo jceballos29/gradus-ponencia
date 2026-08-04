@@ -21,15 +21,18 @@ pnpm build
 | `→` · `espacio` · `AvPág` | Sección siguiente |
 | `←` · `RePág` | Sección anterior |
 | `Inicio` · `Fin` | Primera / última sección |
-| `N` | Notas del guion de la sección actual |
-| `Esc` | Índice (y cierra cualquier superposición) |
+| `Esc` | Índice de secciones |
 
 En escritorio las secciones ocupan el viewport y se ajustan con `scroll-snap`.
 En móvil el snap se desactiva y el scroll es continuo. Cada sección tiene su
 propio `#hash`, así que se puede enlazar a una en concreto.
 
-Las notas del guion se ven en la pantalla proyectada. Para leerlas en privado,
-abre la ponencia también en el teléfono y pulsa `N` ahí.
+## Guion del presentador
+
+Vive fuera del sitio, en `docs/guion-presentador.md` — esa carpeta está en
+`.gitignore` a propósito: el sitio es público y cualquiera con la URL puede
+abrir el código fuente, así que el guion nunca se envía al navegador. Cópiala
+a mano en cada máquina donde vayas a presentar.
 
 ## Contenido
 

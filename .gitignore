@@ -43,3 +43,6 @@ next-env.d.ts
 # playwright (script de capturas)
 /test-results/
 /playwright-report/
+
+# material de autoría (guion, propuesta): no debe viajar en un repo público
+/docs/

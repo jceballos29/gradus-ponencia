@@ -569,26 +569,5 @@ export const estado = {
   },
 } as const;
 
-/* ── Notas del guion (tecla N) ───────────────────────────────────────── */
-
-export const notas: Record<string, string> = {
-  portada:
-    "Buenos días. Voy a contar cómo se construyó Gradus, una plataforma de homologación académica, y sobre todo las decisiones de arquitectura que permitieron avanzar sin quedar bloqueado.",
-  problema:
-    "Imaginen el proceso actual: es completamente manual. El estudiante se desplaza hasta la oficina solo para solicitarlo, y después queda en total incertidumbre. La carga del coordinador es aún mayor: cruzar información a mano, buscar códigos, verificar notas y créditos, y diligenciar los formatos. Es dispendioso y crece exponencialmente: mientras más estudiantes piden homologación, más tiempo se pierde.",
-  decision:
-    "Para modernizar el proceso sin dejarnos bloquear por trámites administrativos, no construimos una página web: construimos un ecosistema de tres piezas. La clave técnica es la capa anticorrupción. El dominio nunca habla con UXXI, habla con una interfaz. Eso nos permitió desarrollar y validar hoy mismo mientras avanzan las solicitudes formales.",
-  ecosistema:
-    "Primero, inicio de sesión centralizado, con arquitectura preparada para ser reemplazada por el SSO de Microsoft. Segundo, el portal de notas, construido estrictamente sobre la documentación oficial de Universitas XXI para que la migración sea orgánica. Y tercero, el corazón: Gradus.",
-  algoritmo:
-    "Esta es la regla que está configurada ahora mismo en el entorno: del pensum viejo al nuevo, nota mínima 3.0, veintiocho equivalencias definidas por la coordinadora. Fíjense en Inglés III: aparece dos veces, perdida con 2.61 y después aprobada con 3.86. El sistema se queda con el mejor intento; sin ese paso la asignatura se caería. Aplicaciones I ni siquiera se evalúa, porque está en curso. Y noten que aquí no se cae nada: eso no es suerte, es que la coordinadora definió las veintiocho equivalencias. Las tres compuertas están para los pares de programas donde falta alguna.",
-  estados:
-    "Siete estados, y las transiciones se validan dentro de la entidad. Si la generación del PDF falla, la aprobación no se pierde: queda aprobada y el acta se puede regenerar sin cambiar el número.",
-  demo:
-    "Ahora les muestro el resultado funcionando en nuestro entorno de desarrollo en vivo. Un minuto para Identity y Universitas, minuto y medio para la vista del estudiante, y dos minutos para el control administrativo del coordinador.",
-  construccion:
-    "Para construir un ecosistema de este calibre como único desarrollador y cumpliendo los tiempos del semillero, apliqué desarrollo asistido por IA. No como autocompletador, sino como habilitador arquitectónico: ingeniería inversa de la documentación de UXXI para generar el esquema del simulador, y mesa de validación para discutir la arquitectura. La auditoría encontró un fallo de seguridad real que las pruebas no cubrían. Lo cuento porque el rigor técnico incluye contar lo que salió mal.",
-  estadoReal:
-    "Nuestros siguientes pasos son reemplazar el sistema de identidad por Microsoft Entra ID y hacer la integración real con la API de Universitas XXI, garantizada por la capa anticorrupción que ya diseñamos. Y hay un punto que no es técnico: el entorno de pruebas de UXXI tiene datos reales de estudiantes.",
-  cierre: "Muchas gracias por su atención.",
-};
+/* El guion del presentador vive en docs/guion-presentador.md (gitignored),
+   no aquí: este archivo se envía al navegador de cualquier visitante. */

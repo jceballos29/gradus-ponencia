@@ -1,4 +1,4 @@
-/** Orden e identidad de las secciones. Lo consume el índice, el riel y las notas. */
+/** Orden e identidad de las secciones. Lo consume el índice y el riel. */
 export const secciones = [
   { id: "portada", titulo: "Gradus", rotulo: "Portada" },
   { id: "problema", titulo: "El proceso actual", rotulo: "El problema" },
