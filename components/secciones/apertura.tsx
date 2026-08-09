@@ -145,7 +145,7 @@ export function Decision() {
   return (
     <Seccion id="decision">
       <Rotulo>La decisión</Rotulo>
-      <Titulo>Tres cosas que no dependían de mí</Titulo>
+      <Titulo>Tres cosas que no dependían de Gradus</Titulo>
       <Entradilla>
         Empezar por la integración real habría significado esperar. La
         arquitectura se diseñó para que esperar no costara tiempo de desarrollo.

@@ -17,7 +17,7 @@ export function Demo() {
       <Rotulo>La demo</Rotulo>
       <Titulo>Está corriendo ahora mismo</Titulo>
       <Entradilla>
-        Escanea y entra desde tu teléfono mientras lo recorro. {demo.nota}
+        Escanea y entra desde tu teléfono mientras se recorre en vivo. {demo.nota}
       </Entradilla>
 
       <div className="mt-7 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4">

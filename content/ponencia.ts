@@ -553,12 +553,12 @@ export const estado = {
     },
     {
       titulo: "Migración a Microsoft Entra ID",
-      quien: "Nosotros, cuando exista el tenant",
+      quien: "Equipo de desarrollo, cuando exista el tenant",
       detalle: "Es configuración: authority, audiencia y emisor.",
     },
     {
       titulo: "Aplicación móvil",
-      quien: "Nosotros",
+      quien: "Equipo de desarrollo",
       detalle: "Workstream 5, estimado en 15–20 jornadas. No iniciado.",
     },
   ],
