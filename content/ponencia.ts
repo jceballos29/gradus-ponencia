@@ -469,9 +469,9 @@ export const demo = {
 
 export const construccion = {
   cifras: [
-    { valor: "183", etiqueta: "commits", pie: "29 abr → 2 jul de 2026" },
+    { valor: "183", etiqueta: "commits", pie: "5 may → 31 jul de 2026" },
     { valor: "1", etiqueta: "desarrollador", pie: "3 horas al día" },
-    { valor: "33/33", etiqueta: "jornadas del núcleo", pie: "workstreams WS1–WS4" },
+    { valor: "48", etiqueta: "jornadas de desarrollo", pie: "144 horas · receso 6–21 jul" },
     { valor: "169", etiqueta: "pruebas automatizadas", pie: "128 en .NET · 41 en gradus" },
   ],
   metodologia: {
@@ -519,7 +519,7 @@ export const construccion = {
   plan: {
     titulo: "El plan también se homologa",
     cuerpo:
-      "El plan de abril tenía siete fases en cascada y 192 tareas. Quince quedaron marcadas. En junio lo reemplazó un modelo de workstreams medidos en jornadas de desarrollo, con bitácora fechada. Ese sí se completó: 33 de 33.",
+      "El plan de abril tenía siete fases en cascada y 192 tareas. Quince quedaron marcadas. En junio lo reemplazó un modelo de jornadas de desarrollo con bitácora fechada. Ese sí se completó: 48 jornadas entre el 5 de mayo y el 31 de julio, con un receso de vacaciones del 6 al 21 de julio.",
   },
 } as const;
 
