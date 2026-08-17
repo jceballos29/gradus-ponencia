@@ -32,11 +32,11 @@ export const problema = {
   },
   destino: {
     rol: "El coordinador",
-    resumen: "Cruza a mano dos pensums y transcribe el resultado.",
+    resumen: "Cruza manualmente dos pensums y transcribe el resultado.",
     dolores: [
       "Abre la base de datos y busca código por código las asignaturas.",
       "Verifica nota y créditos de cada una contra el plan destino.",
-      "Diligencia el acta a mano, con formato institucional.",
+      "Diligencia el acta manualmente, con formato institucional.",
     ],
   },
   cierre:
